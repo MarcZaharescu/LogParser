@@ -1,5 +1,7 @@
 import dataUtilObjects.Data;
 import dataUtilObjects.Log;
+import databaseService.EventEntity;
+import databaseService.ManageEvents;
 import fileUtil.FileService;
 
 import java.util.HashMap;
@@ -19,7 +21,7 @@ public class Main {
             String fileName = args[0];
 
             FileService fs = new FileService(fileName);
-
+            ManageEvents me = new ManageEvents();
             Log log;
             Map<String, Data> logList = new HashMap<>();
 
@@ -30,12 +32,22 @@ public class Main {
                     logList.put(id, log.getData());
                 } else {
                     int duration = (int) Math.abs(log.getData().getTimestamp() - logList.get(id).getTimestamp());
-
+                    if (duration >= MAX_DURATION) {
+                        EventEntity ee = new EventEntity();
+                        ee.setEventId(log.getId());
+                        ee.setDuration(duration);
+                        ee.setHost(log.getData().getHost());
+                        ee.setType(log.getData().getType());
+                        ee.setAlert(true);
+                        me.add(ee);
                     }
 
                 }
             }
 
+            for (EventEntity eventEntity : me.findAll()) {
+                System.out.println(eventEntity.getEventId() + ' ' + eventEntity.getDuration());
+            }
         }
     }
 
