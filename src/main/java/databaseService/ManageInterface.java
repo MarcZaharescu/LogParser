@@ -13,5 +13,6 @@ public interface ManageInterface<T> {
 
     List<T> findAll();
 
+    void deleteAll();
 }
 

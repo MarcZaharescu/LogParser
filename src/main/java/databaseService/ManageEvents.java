@@ -66,4 +66,26 @@ public class ManageEvents implements ManageInterface<EventEntity> {
         return null;
     }
 
+    /** Method delete all the events in the database
+     *
+     *
+     */
+    public void deleteAll(){
+        Session session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.createQuery("DELETE FROM EventEntity").executeUpdate();
+            tx.commit();
+
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            System.err.println("Session has failed to delete events. " + e);
+        } finally {
+            session.close();
+        }
+
+    }
+
 }
