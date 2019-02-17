@@ -3,6 +3,11 @@ package databaseService;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ *  Event entity database object class where the basic getter and setters are set for
+ *  accessing the events' properties
+ */
+
 @Entity
 @Table(name = "Event", uniqueConstraints = {@UniqueConstraint(columnNames = "ID")})
 public class EventEntity implements Serializable {

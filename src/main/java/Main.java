@@ -10,6 +10,18 @@ import java.util.Map;
 public class Main {
 
 
+    /** The main class that combines all the database and file service functionality together.
+     * It holds the log event object inside a hashmap so that when another event with the same
+     *  id is read it can calculate the duration of it by looking in the location with the same
+     *  key id.
+     *
+     *  It then adds the the event inside a local file based hsqldb if the duration of the event is
+     *  greater than the  set MAX_DURATION of 4ms.
+     *
+     * @param args The first argument represents the path of the file
+     */
+    public static final int MAX_DURATION = 4;
+
     public static void main(String[] args) {
 
         if (args.length == 0) {
@@ -17,7 +29,7 @@ public class Main {
             return;
 
         } else {
-            final int MAX_DURATION = 4;
+
             String fileName = args[0];
 
             FileService fs = new FileService(fileName);
@@ -43,10 +55,6 @@ public class Main {
                     }
 
                 }
-            }
-
-            for (EventEntity eventEntity : me.findAll()) {
-                System.out.println(eventEntity.getEventId() + ' ' + eventEntity.getDuration());
             }
         }
     }

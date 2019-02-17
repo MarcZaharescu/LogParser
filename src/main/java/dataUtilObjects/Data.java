@@ -1,12 +1,24 @@
 package dataUtilObjects;
 
+/**
+ * a basic data class for constructing the event log body without the event id.
+ *
+ */
 public class Data {
+
 
     private String state;
     private String type;
     private String host;
     private long timestamp;
 
+    /** Constructor method
+     *
+     * @param state log state
+     * @param type log type
+     * @param host log host
+     * @param timestamp the timestamp of them the log was generated
+     */
     public Data(String state, String type, String host, long timestamp) {
         this.state = state;
         this.type = type;

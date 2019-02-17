@@ -7,13 +7,23 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
+/**
+ *  The DAO class where it implements the methods defined in the ManageInterface
+ */
 public class ManageEvents implements ManageInterface<EventEntity> {
     private static SessionFactory factory;
 
+    /**
+     *  Constructor initiating the session factory object with the aid of the HibernateUtil class
+     */
     public ManageEvents() {
         factory = HibernateUtil.getSessionFactory();
     }
 
+    /** Add method that persists an event to the database
+     *
+     * @param ee EventEntity object
+     */
     public void add(EventEntity ee) {
         Session session = factory.openSession();
         Transaction tx = null;
@@ -30,6 +40,10 @@ public class ManageEvents implements ManageInterface<EventEntity> {
         }
     }
 
+    /** Method to return all the persisted events. Used only for testing purposes.
+     *
+     * @return list of all the entity events
+     */
     public List<EventEntity> findAll() {
         Session session = factory.openSession();
         Transaction tx = null;
