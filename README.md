@@ -1,5 +1,5 @@
 
-# Run instruction:
+# Run instructions:
 
  - Easiest way to run it is from the command line with gradle
  
