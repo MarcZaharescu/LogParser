@@ -5,6 +5,7 @@ import databaseService.ManageEvents;
 import fileUtil.FileService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -23,7 +24,6 @@ public class Main {
     public static final int MAX_DURATION = 4;
 
     public static void main(String[] args) {
-
         if (args.length == 0) {
             System.err.println("There was no path specified. Please input a path");
             return;
@@ -55,6 +55,12 @@ public class Main {
                     }
 
                 }
+            }
+
+            List<EventEntity> allEvents = me.findAll();
+            System.out.println("The following events were logged with the properties: eventId, duration(ms), host, type and alert");
+            for (EventEntity eventEntity : allEvents) {
+                System.out.println(eventEntity.getEventId() + ' ' + eventEntity.getDuration() + ' '+ eventEntity.getHost() + ' ' + eventEntity.getType() + ' ' + eventEntity.getAlert());
             }
         }
     }

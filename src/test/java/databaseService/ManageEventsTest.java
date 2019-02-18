@@ -91,7 +91,7 @@ public class ManageEventsTest {
 
         actualEvents= eventManager.findAll();
         Assert.assertEquals(1, actualEvents.size());
-        
+
         eventManager.deleteAll();
 
         actualEvents= eventManager.findAll();

@@ -61,6 +61,7 @@ public class ManageEvents implements ManageInterface<EventEntity> {
             System.err.println("Session has failed to read events. " + e);
         } finally {
             session.close();
+            factory.close();
         }
 
         return null;
